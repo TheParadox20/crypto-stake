@@ -1,11 +1,28 @@
+import { useState, useEffect } from 'react'
 import './navBar.css'
-import logo from './assets/logo.svg'
-function NavBar() {
 
+function NavBar() {
+  let baseURL='http://192.168.100.12:5000';
+  const [sports, setSports] = useState([]);
+  useEffect(()=>{//to make asynchronus remove from useEffect
+    fetch(baseURL + "/sports").then((response) => response.json())
+    .then((data) => {
+      setSports(data.sports);
+    })
+    .catch((error) => console.log(error))
+  },[])
   return (
     <div>
-        <img src={logo} alt="" srcSet="" />
-        <h3>Crypto Stake</h3>
+        <h3>Sports list</h3>
+        <div className='sports-list'>
+          {
+            sports.map(
+              i=>(
+                <div>{i}</div>
+              )
+            )
+          }
+        </div>
     </div>
   )
 }
