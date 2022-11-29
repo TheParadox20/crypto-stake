@@ -1,0 +1,318 @@
+{
+    "baseURL":"http://192.168.100.12:5000",
+    "CONTRACT_ADDRESS":"0x3778E848d6434331C63aB9f413A8d303EB1aE9a2",
+    "abi":[
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                }
+            ],
+            "name": "addBet",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "amount",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "stakes",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "address payable[]",
+                                    "name": "stakers",
+                                    "type": "address[]"
+                                }
+                            ],
+                            "internalType": "struct CryptoStake.Choice",
+                            "name": "home",
+                            "type": "tuple"
+                        },
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "amount",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "stakes",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "address payable[]",
+                                    "name": "stakers",
+                                    "type": "address[]"
+                                }
+                            ],
+                            "internalType": "struct CryptoStake.Choice",
+                            "name": "draw",
+                            "type": "tuple"
+                        },
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "amount",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "stakes",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "address payable[]",
+                                    "name": "stakers",
+                                    "type": "address[]"
+                                }
+                            ],
+                            "internalType": "struct CryptoStake.Choice",
+                            "name": "away",
+                            "type": "tuple"
+                        }
+                    ],
+                    "internalType": "struct CryptoStake.Bet",
+                    "name": "bet",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "stateMutability": "payable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "CalledFallback",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "winner",
+                    "type": "uint8"
+                }
+            ],
+            "name": "closeBet",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "success",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "demoSendEther",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "deposit",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "choice",
+                    "type": "uint8"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "placeBet",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "success",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "fallback"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "receive"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                }
+            ],
+            "name": "getBetInfo",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "amount",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "stakes",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "address payable[]",
+                                    "name": "stakers",
+                                    "type": "address[]"
+                                }
+                            ],
+                            "internalType": "struct CryptoStake.Choice",
+                            "name": "home",
+                            "type": "tuple"
+                        },
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "amount",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "stakes",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "address payable[]",
+                                    "name": "stakers",
+                                    "type": "address[]"
+                                }
+                            ],
+                            "internalType": "struct CryptoStake.Choice",
+                            "name": "draw",
+                            "type": "tuple"
+                        },
+                        {
+                            "components": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "amount",
+                                    "type": "uint256"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "stakes",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "address payable[]",
+                                    "name": "stakers",
+                                    "type": "address[]"
+                                }
+                            ],
+                            "internalType": "struct CryptoStake.Choice",
+                            "name": "away",
+                            "type": "tuple"
+                        }
+                    ],
+                    "internalType": "struct CryptoStake.Bet",
+                    "name": "bet",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getContractBalance",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "balance",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getUserBalance",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "balance",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+}

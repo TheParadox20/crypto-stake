@@ -1,13 +1,23 @@
 import { useState, useEffect } from 'react'
+import { ethers } from "ethers";
+import {baseURL,CONTRACT_ADDRESS,abi} from './data.json'
 import './App.css'
 
-function placeBet(gameID,choice,e){
+const provider = new ethers.providers.Web3Provider(window.ethereum)
+await provider.send("eth_requestAccounts", []);
+const signer = provider.getSigner()
+let CryptoStakeContract = new ethers.Contract(CONTRACT_ADDRESS,abi,provider);
+let CryptoStakeContractSigner = CryptoStakeContract.connect(signer);
+
+let placeBet = async (gameID,choice,e)=>{
   e.preventDefault();
-  console.log(gameID);
-  console.log(choice);
+  await CryptoStakeContractSigner.placeBet(gameID,choice,590);
 }
+let testCryptoConnection = async ()=>{
+  let x=await CryptoStakeContract.getUserBalance();
+  console.log(x);
+};
 function App() {
-  let baseURL='http://192.168.100.12:5000';
   const [message, setMessage] = useState({});
   useEffect(()=>{
     fetch(baseURL + "/test").then((response) => response.json())
@@ -29,11 +39,12 @@ function App() {
   return (
     <div>
       <h1>{message.test}</h1>
+      <button onClick={(e)=>testCryptoConnection()}>Test Crytpo Connection</button>
       <div className='games-list'>
           {
             games.map(
               i=>(
-                <div className='game'>
+                <div className='game' key={i.gameID}>
                   <h3>{i.home}</h3>
                   <button onClick={(e)=>placeBet(i.gameID,1,e)}>1</button>
                   <button onClick={(e)=>placeBet(i.gameID,0,e)}>x</button>
