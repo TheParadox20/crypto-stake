@@ -1,31 +1,32 @@
 import { useState, useEffect } from 'react'
 import { ethers } from "ethers";
-import {baseURL,CONTRACT_ADDRESS,abi} from './data.json'
+import {baseURL} from './data.json'
 import './App.css'
-
-const provider = new ethers.providers.Web3Provider(window.ethereum)
-let connectWallet = async ()=>{
-  await provider.send("eth_requestAccounts", []);
-}
-const signer = provider.getSigner()
-let CryptoStakeContract = new ethers.Contract(CONTRACT_ADDRESS,abi,provider);
-let CryptoStakeContractSigner = CryptoStakeContract.connect(signer);
+import {CryptoStakeContract,CryptoStakeContractSigner,provider} from './contracts'
 
 //
 let stakes = {};
+let amount;
 //
 
 let placeBet = async (gameID,choice,e)=>{
   e.preventDefault();
-  await CryptoStakeContractSigner.placeBet(gameID,choice,590);
+  await provider.send("eth_requestAccounts", []);
+  
+  let tx = {
+    // gasLimit:100000,
+    value:ethers.utils.parseEther(amount)
+  }
+  await CryptoStakeContractSigner.placeBet(gameID,choice,590,tx);
 }
 let testCryptoConnection = async ()=>{
-  connectWallet();
-  let x =  await CryptoStakeContract.getUserBalance();
+  let x =  await CryptoStakeContract.getContractBalance();
   console.log(x);
 };
+
 function App() {
   const [message, setMessage] = useState({});
+  const [game, setGame] = useState({});
   useEffect(()=>{
     fetch(baseURL + "/test").then((response) => response.json())
     .then((data) => {
@@ -48,12 +49,25 @@ function App() {
     })
     .catch((error) => console.log(error))
   },[])
+  let hanndleAmount = event =>{
+    amount = event.target.value;
+    console.log(amount);
+  }
+  let getGame = async ()=>{
+    let game = await CryptoStakeContract.getBetInfo("hello");//x.draw.amount._hex
+    setGame(game);
+    console.log(game.home.amount);
+    console.log(game.draw.amount);
+    console.log((game.away.amount._hex).toString());
+    console.log(game.away.stakers);
+  };
   
 
   return (
     <div>
       <h1>{message.test}</h1>
       <button onClick={(e)=>testCryptoConnection()}>Test Connection To Chain</button>
+      <button onClick={(e)=>getGame()}>Get HEllo</button>
       <div className='games-list'>
           {
             games.map(
@@ -66,9 +80,13 @@ function App() {
                   <h3>{i.away}</h3>
                   <h3>{i.time}</h3>
                   <p>ID: {i.gameID}</p>
-                  <p>Home stakes {console.log(i.homeStake)}</p>
+                  <p>Home stakes {i.homeStake}</p>
                   <p>Draw stakes {i.awayStake}</p>
                   <p>Away stakes {i.drawStake}</p>
+                  <label>
+                  Your Stake ::
+                  <input type="text" value={amount} onChange={hanndleAmount} />
+                  </label>
                 </div>
               )
             )

@@ -1,5 +1,7 @@
 import React from "react";
 import { baseURL } from "./data.json";
+import {CryptoStakeContract,CryptoStakeContractSigner} from './contracts'
+
 /**
  * Add new bets (not compulsory)
  * Get betInfo of every bet
@@ -89,6 +91,17 @@ import { baseURL } from "./data.json";
         <br />
         <form onSubmit={this.closeGame}>
           <h4>Close Bet</h4>
+            <label>
+            Game ID:
+            <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
+            </label>
+            <br/>
+            
+            <br/>
+            <input type="submit" value="Close Bet" />
+        </form>
+        <form onSubmit={this.getGame}>
+          <h4>View Bet</h4>
             <label>
             Game ID:
             <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
