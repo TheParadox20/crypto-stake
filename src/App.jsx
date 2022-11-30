@@ -20,6 +20,7 @@ let placeBet = async (gameID,choice,e)=>{
   await CryptoStakeContractSigner.placeBet(gameID,choice,590);
 }
 let testCryptoConnection = async ()=>{
+  connectWallet();
   let x =  await CryptoStakeContract.getUserBalance();
   console.log(x);
 };
@@ -29,7 +30,6 @@ function App() {
     fetch(baseURL + "/test").then((response) => response.json())
     .then((data) => {
       setMessage(data);
-      console.log('\n'+baseURL + "/sports\n")
     })
     .catch((error) => console.log(error))
   }, [])
