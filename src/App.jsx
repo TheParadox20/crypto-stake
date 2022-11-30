@@ -9,12 +9,16 @@ const signer = provider.getSigner()
 let CryptoStakeContract = new ethers.Contract(CONTRACT_ADDRESS,abi,provider);
 let CryptoStakeContractSigner = CryptoStakeContract.connect(signer);
 
+//
+let stakes = {};
+//
+
 let placeBet = async (gameID,choice,e)=>{
   e.preventDefault();
   await CryptoStakeContractSigner.placeBet(gameID,choice,590);
 }
 let testCryptoConnection = async ()=>{
-  let x=await CryptoStakeContract.getUserBalance();
+  let x =  await CryptoStakeContract.getUserBalance();
   console.log(x);
 };
 function App() {
@@ -23,6 +27,7 @@ function App() {
     fetch(baseURL + "/test").then((response) => response.json())
     .then((data) => {
       setMessage(data);
+      console.log('\n'+baseURL + "/sports\n")
     })
     .catch((error) => console.log(error))
   }, [])
@@ -30,11 +35,18 @@ function App() {
   const [games, setGames] = useState([]);
   useEffect(()=>{//to make asynchronus remove from useEffect
     fetch(baseURL + "/games").then((response) => response.json())
-    .then((data) => {
+    .then(async (data) => {
       setGames(data.games);
+      // console.log(games)
+      for (let i = 0; i < games.length; i++) {
+      games[i]['homeStake']=await CryptoStakeContract.getBetInfo(games[i].gameID)//draw.amount._hex
+      games[i]['drawStake']=await CryptoStakeContract.getBetInfo(games[i].gameID)//draw.amount._hex
+      games[i]['awayStake']=await CryptoStakeContract.getBetInfo(data.games[i].gameID);//x.draw.amount._hex
+      }
     })
     .catch((error) => console.log(error))
   },[])
+  
 
   return (
     <div>
@@ -52,6 +64,9 @@ function App() {
                   <h3>{i.away}</h3>
                   <h3>{i.time}</h3>
                   <p>ID: {i.gameID}</p>
+                  <p>Home stakes {console.log(i.homeStake)}</p>
+                  <p>Draw stakes {i.awayStake}</p>
+                  <p>Away stakes {i.drawStake}</p>
                 </div>
               )
             )

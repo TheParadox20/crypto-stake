@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import baseURL from './data.json'
+import {baseURL} from './data.json'
 import './navBar.css'
 
 function NavBar() {
