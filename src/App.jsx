@@ -53,7 +53,7 @@ function App() {
   return (
     <div>
       <h1>{message.test}</h1>
-      <button onClick={(e)=>testCryptoConnection()}>Test Crytpo Connection</button>
+      <button onClick={(e)=>testCryptoConnection()}>Test Connection To Wallet</button>
       <div className='games-list'>
           {
             games.map(
