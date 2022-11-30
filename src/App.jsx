@@ -4,7 +4,9 @@ import {baseURL,CONTRACT_ADDRESS,abi} from './data.json'
 import './App.css'
 
 const provider = new ethers.providers.Web3Provider(window.ethereum)
-await provider.send("eth_requestAccounts", []);
+let connectWallet = async ()=>{
+  await provider.send("eth_requestAccounts", []);
+}
 const signer = provider.getSigner()
 let CryptoStakeContract = new ethers.Contract(CONTRACT_ADDRESS,abi,provider);
 let CryptoStakeContractSigner = CryptoStakeContract.connect(signer);

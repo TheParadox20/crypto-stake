@@ -1,5 +1,5 @@
 {
-    "baseURL":"http://192.168.100.12:5000",
+    "baseURL":"https://backend-production-539b.up.railway.app/",
     "CONTRACT_ADDRESS":"0x3778E848d6434331C63aB9f413A8d303EB1aE9a2",
     "abi":[
         {
