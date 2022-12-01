@@ -1,6 +1,7 @@
 import React from "react";
 import { baseURL } from "./data.json";
 import {CryptoStakeContract,CryptoStakeContractSigner} from './contracts'
+import './admin.css'
 
 /**
  * Add new bets (not compulsory)
@@ -64,43 +65,69 @@ import {CryptoStakeContract,CryptoStakeContractSigner} from './contracts'
   render() {
     return (
         <React.Fragment>
-          <form onSubmit={this.submitGame}>
-            <h4>Add Bet</h4>
-            <label>
-            Kickoff:
-            <input type="text" value={this.state.kickoff} onChange={this.handleKickoffTime} />
-            </label>
-            <br/>
+          <div className="admin-container">
+            <h4>Admin pannel</h4>
+          <form onSubmit={this.submitGame} className="admin-form">
+
+            <div>
+              <h4>Add Bet</h4>
+              <label>
+              Kickoff:
+              </label>
+              <input type="text" value={this.state.kickoff} onChange={this.handleKickoffTime} />
+              <br/>
+            </div>
+           
+            <div>
             <label>
             Bet ID:
-            <input type="text" value={this.state.betID} onChange={this.handleBetID} />
             </label>
+            <input type="text" value={this.state.betID} onChange={this.handleBetID} />
             <br/>
+            </div>
+
+            <div>
             <label>
             Home Team:
-            <input type="text" value={this.state.home} onChange={this.handleHomeTeam} />
             </label>
+            <input type="text" value={this.state.home} onChange={this.handleHomeTeam} />
+           
             <br/>
+            </div>
+
+            <div>
             <label>
             Away Team:
-            <input type="text" value={this.state.away} onChange={this.handleAwayTeam} />
             </label>
+            <input type="text" value={this.state.away} onChange={this.handleAwayTeam} />
+           
             <br/>
-            <input type="submit" value="Add Match" />
+            </div>
+
+            <input type="submit" value="Add Match" className="submit-button"/>
         </form>
         <br />
-        <form onSubmit={this.closeGame}>
+
+        <form onSubmit={this.closeGame} className="admin-form">
           <h4>Close Bet</h4>
             <label>
             Game ID:
-            <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
+ 
             </label>
+           <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
+           <label>
+            Choice:
+ 
+            </label>
+           <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
+           
             <br/>
             
             <br/>
             <input type="submit" value="Close Bet" />
         </form>
-        <form onSubmit={this.getGame}>
+
+        <form onSubmit={this.getGame} className="admin-form">
           <h4>View Bet</h4>
             <label>
             Game ID:
@@ -111,6 +138,7 @@ import {CryptoStakeContract,CryptoStakeContractSigner} from './contracts'
             <br/>
             <input type="submit" value="Close Bet" />
         </form>
+        </div>
     </React.Fragment>
     );
   }

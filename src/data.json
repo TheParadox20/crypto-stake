@@ -1,6 +1,6 @@
 {
-    "baseURL":"https://backend-production-539b.up.railway.app/",
-    "CONTRACT_ADDRESS":"0x4B5B81D5DF468e44dDb6188c680181e8d3F1d75F",
+    "baseURL":"http://192.168.100.37:5000/",
+    "CONTRACT_ADDRESS":"0xb700F40e7d5Aa4cEbFfa747E2ffaD75192cCa7B1",
     "abi":[
         {
             "inputs": [
@@ -44,16 +44,24 @@
                     "internalType": "uint8",
                     "name": "choice",
                     "type": "uint8"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
                 }
             ],
             "name": "placeBet",
             "outputs": [],
             "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "thief",
+                    "type": "address"
+                }
+            ],
+            "name": "steal",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {

@@ -9,6 +9,7 @@ let stakes = {};
 let amount;
 //
 
+
 let placeBet = async (gameID,choice,e)=>{
   e.preventDefault();
   await provider.send("eth_requestAccounts", []);
@@ -17,7 +18,7 @@ let placeBet = async (gameID,choice,e)=>{
     // gasLimit:100000,
     value:ethers.utils.parseEther(amount)
   }
-  await CryptoStakeContractSigner.placeBet(gameID,choice,590,tx);
+  await CryptoStakeContractSigner.placeBet(gameID,choice,tx);
 }
 let testCryptoConnection = async ()=>{
   let x =  await CryptoStakeContract.getContractBalance();
@@ -27,6 +28,9 @@ let testCryptoConnection = async ()=>{
 function App() {
   const [message, setMessage] = useState({});
   const [game, setGame] = useState({});
+  const  [selected, setSelected] = useState(false); 
+
+
   useEffect(()=>{
     fetch(baseURL + "/test").then((response) => response.json())
     .then((data) => {
@@ -41,11 +45,6 @@ function App() {
     .then(async (data) => {
       setGames(data.games);
       // console.log(games)
-      for (let i = 0; i < games.length; i++) {
-      games[i]['homeStake']=await CryptoStakeContract.getBetInfo(games[i].gameID)//draw.amount._hex
-      games[i]['drawStake']=await CryptoStakeContract.getBetInfo(games[i].gameID)//draw.amount._hex
-      games[i]['awayStake']=await CryptoStakeContract.getBetInfo(data.games[i].gameID);//x.draw.amount._hex
-      }
     })
     .catch((error) => console.log(error))
   },[])
@@ -53,45 +52,83 @@ function App() {
     amount = event.target.value;
     console.log(amount);
   }
-  let getGame = async ()=>{
+  let getGame = async (gameID,choice)=>{
     let game = await CryptoStakeContract.getBetInfo("hello");//x.draw.amount._hex
     setGame(game);
-    console.log(game.home.amount);
-    console.log(game.draw.amount);
-    console.log((game.away.amount._hex).toString());
     console.log(game.away.stakers);
+    switch (choice) {
+      case 1:
+        return game.home.amount._hex;
+      case 0:
+        return game.draw.amount._hex;
+      case 2:
+        return game.away.amount._hex;
+    }
   };
   
 
   return (
-    <div>
-      <h1>{message.test}</h1>
-      <button onClick={(e)=>testCryptoConnection()}>Test Connection To Chain</button>
-      <button onClick={(e)=>getGame()}>Get HEllo</button>
-      <div className='games-list'>
+    <div className="matches-table">
+      {/* <button onClick={(e)=>steal()}>Loot Contract</button> */}
+      <div className="matches-title">
+        <p>Football Game</p>
+      </div>
+
+      <div className="matches-buttons">
+        <button>TODAY</button>
+        <button>ALL MATCHES</button>
+        <input type="text" value={amount} className="input-search" onChange={hanndleAmount} placeholder="Search"/>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>DATE</th>
+            <th>LOGO</th>
+            <th>TEAMS</th>
+            <th>1</th>
+            <th>X</th>
+            <th>2</th>
+            <th>STAKES</th>
+            <th>POT</th>
+          </tr>
+        </thead>
+        <tbody>
           {
             games.map(
               i=>(
-                <div className='game' key={i.gameID}>
-                  <h3>{i.home}</h3>
-                  <button onClick={(e)=>placeBet(i.gameID,1,e)}>1</button>
-                  <button onClick={(e)=>placeBet(i.gameID,0,e)}>x</button>
-                  <button onClick={(e)=>placeBet(i.gameID,2,e)}>2</button>
-                  <h3>{i.away}</h3>
-                  <h3>{i.time}</h3>
-                  <p>ID: {i.gameID}</p>
-                  <p>Home stakes {i.homeStake}</p>
-                  <p>Draw stakes {i.awayStake}</p>
-                  <p>Away stakes {i.drawStake}</p>
-                  <label>
-                  Your Stake ::
-                  <input type="text" value={amount} onChange={hanndleAmount} />
-                  </label>
-                </div>
+                <tr className='game' key={i.gameID}>
+                  <td>
+                  {i.time}
+                  </td>
+                  <td className='matches-table-logo'>
+                    <img style={{display:"block"}} src="./test.png" alt="H_logo" srcSet="" />
+                    <img style={{display:"block"}} src="./test.png" alt="H_logo" srcSet="" />
+                  </td>
+                  <td>
+                    <div>{i.home}</div>
+                    <div>{i.away}</div>
+                  </td>
+                  <td><button onClick={(e)=>placeBet(i.gameID,1,e)}>0.00</button></td>
+                  <td><button onClick={(e)=> { placeBet(i.gameID,0,e); setSelected(current => !current) }}>0.00</button></td>
+                  <td><button onClick={(e)=> { placeBet(i.gameID,2,e); setSelected(current => !current) }}>0.00</button></td>
+                  <td>0.0</td>
+                  <td>
+                    <label>
+                    Your Stake ::
+                    {
+                      selected && (
+                        <input type="text" value={amount} onChange={hanndleAmount} />
+                      )
+                    }
+                    </label>
+                  </td>
+                </tr>
               )
             )
           }
-        </div>
+
+        </tbody>
+      </table>
     </div>
   )
 }

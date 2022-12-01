@@ -1,3 +1,14 @@
 h3{
     color: #8AFFCF;
 }
+.navbar-button{
+    margin: 2%;
+}
+.navbar-button img{
+    width: 100%;
+    height: 100%;
+}
+.navbar-button{
+    line-height: 2%;
+    height: 2%;
+}

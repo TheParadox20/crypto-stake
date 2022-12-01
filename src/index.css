@@ -1,4 +1,23 @@
+:root {
+  --background-color: rgb(75, 66, 66); 
+  --text-color: #ffff; 
+}
+
+
 body{
   background-color: #152028;
   color: whitesmoke;
+}
+
+.main {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.main-container {
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh;
 }

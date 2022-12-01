@@ -4,13 +4,21 @@ import App from './App'
 import NavBar from './navBar'
 import Header from './header'
 import Admin from './admin'
+import SideBar from './sideBar'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Header/>
+  <>
+  <div className="main">
     <NavBar/>
-    <App />
-    <Admin/>
+      <div className="main-container">
+        <Header/>
+        <App />
+      </div>
+    <SideBar />
+  </div>
+  <Admin/>
+  </>
   </React.StrictMode>
 )
