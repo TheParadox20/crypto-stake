@@ -1,8 +1,8 @@
 import './sideBar.css'
 function SideBar() {
     return (
-      <div className="sidebar-main">
-        <p>This is my sidebar</p>
+      <div className="SideBar">
+        <p>News and Adds Section</p>
       </div>
     )
   }

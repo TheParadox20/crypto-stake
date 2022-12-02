@@ -1,6 +1,6 @@
 import React from "react";
 import { baseURL } from "./data.json";
-import {CryptoStakeContract,CryptoStakeContractSigner} from './contracts'
+import {CryptoStakeContractSigner} from './contracts'
 import './admin.css'
 
 /**
@@ -15,7 +15,8 @@ import './admin.css'
         away: '',
         kickoff: '',
         betID: '',
-        gameID:''
+        gameID:'',
+        choice:''
     };
 
     this.handleHomeTeam = this.handleHomeTeam.bind(this);
@@ -25,6 +26,7 @@ import './admin.css'
     this.submitGame = this.submitGame.bind(this);
     this.handleGameID = this.handleGameID.bind(this);
     this.closeGame = this.closeGame.bind(this);
+    this.handleChoice = this.handleChoice.bind(this);
   }
 
   handleHomeTeam(event) {
@@ -42,6 +44,9 @@ import './admin.css'
   handleGameID(event) {
     this.setState({gameID: event.target.value});
   }
+  handleChoice(event) {
+    this.setState({choice: event.target.value});
+  }
 
   submitGame(event) {
     event.preventDefault();
@@ -55,6 +60,7 @@ import './admin.css'
   }
   closeGame(event) {
     event.preventDefault();
+    CryptoStakeContractSigner.closeBet(this.state.gameID,parseInt(this.state.choice));
     fetch(baseURL + "/closeGame?gameID=" + this.state.gameID ).then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -119,20 +125,8 @@ import './admin.css'
             Choice:
  
             </label>
-           <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
+           <input type="text" value={this.state.choice} onChange={this.handleChoice} />
            
-            <br/>
-            
-            <br/>
-            <input type="submit" value="Close Bet" />
-        </form>
-
-        <form onSubmit={this.getGame} className="admin-form">
-          <h4>View Bet</h4>
-            <label>
-            Game ID:
-            <input type="text" value={this.state.gameID} onChange={this.handleGameID} />
-            </label>
             <br/>
             
             <br/>

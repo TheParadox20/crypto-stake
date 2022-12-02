@@ -16,7 +16,7 @@ function NavBar() {
     .catch((error) => console.log(error))
   },[])
   return (
-    <div>
+    <div className='NavBar'>
         <h3>Sports</h3>
         <div className='sports-list'>
           {

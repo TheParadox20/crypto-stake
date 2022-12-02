@@ -1,5 +1,10 @@
+.NavBar{
+    background-color: #1f3b47;
+    width: 15vw;
+}
 h3{
     color: #8AFFCF;
+    
 }
 .navbar-button{
     margin: 2%;

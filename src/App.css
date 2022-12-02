@@ -2,8 +2,8 @@
     border: 2px solid white;
     margin: 1%;
 }
-tr:nth-child(even){background-color: #2C5364;}
-tr:nth-child(odd){background-color: #2C5364;}
+tr:nth-child(even){background-color: #1f3b47;}
+tr:nth-child(odd){background-color: #1f3b47;}
 img{
     max-width: 8%;
     max-height: 8%;
@@ -60,7 +60,9 @@ button:hover {
 .matches-table table thead tr th{
     padding: 2%;
 }
+td{
+    max-width: min-content;
+}
 .matches-table-logo img{
-    width: fit-content;
     margin: 0 auto;
 }

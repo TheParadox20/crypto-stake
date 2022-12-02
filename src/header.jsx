@@ -5,7 +5,7 @@ function Header() {
     return (
       <header>
         <img src={logo} alt="" srcSet="" />
-        <h3>Crypto Stake</h3>
+        <h3 className='logo-text'>Crypto Stake</h3>
       </header>
     )
   }
