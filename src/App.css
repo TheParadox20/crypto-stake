@@ -60,9 +60,6 @@ button:hover {
 .matches-table table thead tr th{
     padding: 2%;
 }
-td{
-    max-width: min-content;
-}
 .matches-table-logo img{
     margin: 0 auto;
 }

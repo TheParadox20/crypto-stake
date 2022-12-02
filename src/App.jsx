@@ -24,7 +24,6 @@ let placeBet = async (gameID,choice,e)=>{
 function App() {
   const [message, setMessage] = useState({});
   const [game, setGame] = useState({});
-  const  [selected, setSelected] = useState(false); 
 
 
   useEffect(()=>{
@@ -45,6 +44,7 @@ function App() {
       // console.log(games)
     })
     .catch((error) => console.log(error))
+  
   let handleAmount = event =>{
     amount = event.target.value;
     console.log(amount);
@@ -52,7 +52,11 @@ function App() {
   let handleSearch = event =>{
     searchQuery = event.target.value;
   }
-  
+  let [balance,setBalance] = useState({});
+  let getContractBalance = async ()=>{
+    setBalance( await CryptoStakeContract.getContractBalance());
+    console.log(balance);
+  };
 
   return (
     <div className='middle'>
@@ -66,6 +70,8 @@ function App() {
           <button>TODAY</button>
           <button>ALL MATCHES</button>
           <input type="text" value={searchQuery} className="input-search" onChange={handleSearch} placeholder="Search"/>
+          <button onClick={(e)=> {getContractBalance()}}>Get contract balance</button>
+          <span style={{color:'black'}}>{parseInt(balance._hex,16)} wei</span>
         </div>
         <table>
           <thead>
@@ -97,17 +103,12 @@ function App() {
                       <div>{i.away}</div>
                     </td>
                     <td><button onClick={(e)=>placeBet(i.gameID,1,e)}>0.00</button></td>
-                    <td><button onClick={(e)=> { placeBet(i.gameID,0,e); setSelected(current => !current) }}>0.00</button></td>
-                    <td><button onClick={(e)=> { placeBet(i.gameID,2,e); setSelected(current => !current) }}>0.00</button></td>
+                    <td><button onClick={(e)=> { placeBet(i.gameID,0,e)}}>0.00</button></td>
+                    <td><button onClick={(e)=> { placeBet(i.gameID,2,e)}}>0.00</button></td>
                     <td>0.0</td>
                     <td>
                       <label>
-                      Your Stake ::
-                      {
-                        selected && (
-                          <input type="text" value={amount} onChange={handleAmount} />
-                        )
-                      }
+                      Your Stake :: <input type="text" value={amount} onChange={handleAmount} />
                       </label>
                     </td>
                   </tr>
