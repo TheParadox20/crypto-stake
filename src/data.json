@@ -1,7 +1,16 @@
 {
     "baseURL":"https://backend-dev-7aa2.up.railway.app/",
-    "CONTRACT_ADDRESS":"0xb700F40e7d5Aa4cEbFfa747E2ffaD75192cCa7B1",
+    "CONTRACT_ADDRESS":"0xd31DCa4EA3d70032b3C11403EFEccA2E64f8A9D5",
     "abi":[
+        {
+            "inputs": [],
+            "stateMutability": "payable",
+            "type": "constructor"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "fallback"
+        },
         {
             "inputs": [
                 {
@@ -34,48 +43,17 @@
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "betID",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint8",
-                    "name": "choice",
-                    "type": "uint8"
-                }
-            ],
-            "name": "placeBet",
-            "outputs": [],
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address payable",
-                    "name": "thief",
-                    "type": "address"
-                }
-            ],
-            "name": "steal",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
             "inputs": [],
-            "stateMutability": "payable",
-            "type": "constructor"
-        },
-        {
-            "stateMutability": "payable",
-            "type": "fallback"
-        },
-        {
-            "stateMutability": "payable",
-            "type": "receive"
+            "name": "commission",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
             "inputs": [
@@ -178,6 +156,35 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                }
+            ],
+            "name": "getStakes",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "home",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "draw",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "away",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "owner",
             "outputs": [
@@ -189,6 +196,41 @@
             ],
             "stateMutability": "view",
             "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "choice",
+                    "type": "uint8"
+                }
+            ],
+            "name": "placeBet",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "verifyAdmin",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "isAdmin",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "receive"
         }
     ]
 }

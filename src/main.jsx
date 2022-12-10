@@ -1,7 +1,7 @@
 import React  from 'react'
 import { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import Games from './games'
 import NavBar from './navBar'
 import Header from './header'
 import Admin from './admin'
@@ -18,9 +18,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Header/>
         <div className="main-container">
           <NavBar/>
-          <App />
+          <Games />
           <SideBar />
         </div>
-    <Admin/>
+    {/* <Admin/> */}
   </React.Fragment>
 )

@@ -36,7 +36,8 @@ function NavBar() {
               )
             )
           }
-        </div><h3>Countries</h3>
+        </div>
+        <h3>Countries</h3>
         <div className='sports-list'>
           {
             countries.map(
@@ -46,6 +47,7 @@ function NavBar() {
             )
           }
         </div>
+        <h3>Extras</h3>
     </div>
   )
 }
