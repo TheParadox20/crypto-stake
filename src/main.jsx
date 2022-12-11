@@ -1,7 +1,8 @@
 import React  from 'react'
 import { useState, useEffect } from 'react'
+import {BrowserRouter} from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
-import Games from './games'
+import Middle from './middle'
 import NavBar from './navBar'
 import Header from './header'
 import Admin from './admin'
@@ -17,8 +18,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.Fragment>
     <Header/>
         <div className="main-container">
-          <NavBar/>
-          <Games />
+          <BrowserRouter>
+            <NavBar/>
+            <Middle />
+          </BrowserRouter>
           <SideBar />
         </div>
     {/* <Admin/> */}

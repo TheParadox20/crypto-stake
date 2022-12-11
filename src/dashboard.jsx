@@ -1,6 +1,6 @@
 function Dashboard(){
     return (
-        <React.Fragment></React.Fragment>
+        <h1>Home Page</h1>
     )
 }
 

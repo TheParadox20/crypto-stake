@@ -6,14 +6,21 @@ h3{
     color: #8AFFCF;
     
 }
+.NavBar a{
+    text-decoration: none;
+    color: white;
+}
+.NavBar a:active{
+    color: #4b4242;
+}
+.navbar-button:hover{
+    background-color: #4b4242;
+}
 .navbar-button{
     margin: 2%;
+    display: block;
 }
 .navbar-button img{
     width: 100%;
     height: 100%;
-}
-.navbar-button{
-    line-height: 2%;
-    height: 2%;
 }

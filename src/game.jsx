@@ -21,13 +21,15 @@ function Game(props){
     let [awayStake, setAwayStake] = useState(0.0);
     let [drawStake, setDrawStake] = useState(0.0);
     let [possibleWin, setPossibleWin] = useState(0.0);
+    let [currency, setCurrency] = useState('ETH');
     let [choice, setChoice] = useState(1);
     useEffect(()=> {
         async function updateBalance(){
             let balance = await CryptoStakeContract.getStakes(props.gameID);
-            setHomeStake(parseInt(balance.home._hex,16))
-            setAwayStake(parseInt(balance.away._hex,16))
-            setDrawStake(parseInt(balance.draw._hex,16))
+            // setHomeStake((parseFloat(ethers.utils.formatEther(parseInt(balance.home._hex,16)))/props.convertionRate).toFixed(8));
+            setHomeStake(parseFloat(ethers.utils.formatEther(parseInt(balance.home._hex,16))));
+            setAwayStake(parseFloat(ethers.utils.formatEther(parseInt(balance.away._hex,16))));
+            setDrawStake(parseFloat(ethers.utils.formatEther(parseInt(balance.draw._hex,16))));
         }
         setInterval(updateBalance, 10000);
     },[])
@@ -51,14 +53,13 @@ function Game(props){
                 pot=awayStake
                 break;
         }
-        setPossibleWin((stake/(pot+stake)*winnings)+stake);
-        console.log(winnings);
+        setPossibleWin(isNaN(stake/(pot+stake)*winnings)?0:(stake/(pot+stake)*winnings));
     };
     return (
         <div className='game'>
-            <p><img src="./test.png" alt="H_logo" srcSet="" /> {props.home}</p>
+            <p><img src="./test.png" alt="" srcSet="" /> {props.home}</p>
             <p>VS</p>
-            <p><img src="./test.png" alt="H_logo" srcSet="" /> {props.away}</p>
+            <p><img src="./test.png" alt="" srcSet="" /> {props.away}</p>
             {props.time}
             <table>
                 <tbody>
@@ -68,15 +69,15 @@ function Game(props){
                         <td>2</td>
                     </tr>
                     <tr>
-                        <td><button onClick={(e)=>setChoice(1)}>{homeStake}</button></td>
-                        <td><button onClick={(e)=> setChoice(0)}>{drawStake}</button></td>
-                        <td><button onClick={(e)=> setChoice(2)}>{awayStake}</button></td>
+                        <td><button id={choice==1?'active':''} onClick={(e)=>setChoice(1)}>{homeStake}</button></td>
+                        <td><button id={choice==0?'active':''} onClick={(e)=> setChoice(0)}>{drawStake}</button></td>
+                        <td><button id={choice==2?'active':''} onClick={(e)=> setChoice(2)}>{awayStake}</button></td>
                     </tr>
                 </tbody>
             </table>
             <div>
-                <input type="text" placeholder='Your Stake' onKeyUp={handleAmount} />
-                <p>{possibleWin} Wei</p>
+                <input type="text" placeholder={'Your Stake('+currency+')'} onKeyUp={handleAmount} />
+                <p>Possible Win: {possibleWin} {currency}</p>
                 <button onClick={(e)=>placeBet(props.gameID,choice,amount,e)}>Place Bet</button>
                 <button>Cart</button>
             </div>

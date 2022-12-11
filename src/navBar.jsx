@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
+import {Link,Routes,Route} from 'react-router-dom'
 import {baseURL} from './data.json'
+import Games from './games'
 import './navBar.css'
 
 function NavBar() {
@@ -22,7 +24,7 @@ function NavBar() {
           {
             sports.map(
               i=>(
-                <div className='navbar-button'> <img src="./test.png" alt="" srcSet="" /> {i}</div>
+                <Link className='navbar-button' to={'/games/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
               )
             )
           }
@@ -32,7 +34,7 @@ function NavBar() {
           {
             leagues.map(
               i=>(
-                <div className='navbar-button'> <img src="./test.png" alt="" srcSet="" /> {i}</div>
+                <Link className='navbar-button' to={'/games/leagues/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
               )
             )
           }
@@ -42,12 +44,14 @@ function NavBar() {
           {
             countries.map(
               i=>(
-                <div className='navbar-button'> <img src="./test.png" alt="" srcSet="" /> {i}</div>
+                <Link className='navbar-button' to={'/games/countries/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
               )
             )
           }
         </div>
         <h3>Extras</h3>
+        <Link className='navbar-button'>Create Event</Link>
+        <Link className='navbar-button' to='/admin'>Admin Panel</Link>
     </div>
   )
 }
