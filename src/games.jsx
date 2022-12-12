@@ -14,15 +14,15 @@ function Games() {
 
 
   useEffect(()=>{//to make fetch asynchronus remove from useEffect
-    fetch(baseURL + "/games").then((response) => response.json())
+    
+  },[])
+  
+  fetch(baseURL + "/games").then((response) => response.json())
     .then(async (data) => {
       setGames(data.games);
       // console.log(games)
     })
     .catch((error) => console.log(error))
-  },[])
-  
-  
   
   let handleSearch = event =>{
     searchQuery = event.target.value;

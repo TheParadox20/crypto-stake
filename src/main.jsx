@@ -1,12 +1,12 @@
 import React  from 'react'
-import { useState, useEffect } from 'react'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import ReactDOM from 'react-dom/client'
-import Middle from './middle'
 import NavBar from './navBar'
 import Header from './header'
 import Admin from './admin'
 import SideBar from './sideBar'
+import Games from './games'
+import Dashboard from './dashboard'
 import {CryptoStakeContract} from './contracts'
 import './index.css'
 
@@ -20,10 +20,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <div className="main-container">
           <BrowserRouter>
             <NavBar/>
-            <Middle />
+            <Routes>
+              <Route path='/' element={<Dashboard/>}/>
+              <Route path='/games'>
+                  <Route index element={<Dashboard/>}/>
+                  <Route path=':id' element={<Games/>}/>
+                  <Route path=':category/:id' element={<Games/>}/>
+              </Route>
+              <Route path='/admin' element={<Admin/>}/>
+            </Routes>
           </BrowserRouter>
           <SideBar />
         </div>
-    {/* <Admin/> */}
   </React.Fragment>
 )
