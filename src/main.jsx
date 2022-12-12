@@ -20,15 +20,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <div className="main-container">
           <BrowserRouter>
             <NavBar/>
-            <Routes>
-              <Route path='/' element={<Dashboard/>}/>
-              <Route path='/games'>
-                  <Route index element={<Dashboard/>}/>
-                  <Route path=':id' element={<Games/>}/>
-                  <Route path=':category/:id' element={<Games/>}/>
-              </Route>
-              <Route path='/admin' element={<Admin/>}/>
-            </Routes>
+            <div className='center-content'>
+              <Routes>
+                <Route path='/' element={<Dashboard/>}/>
+                <Route path='/games'>
+                    <Route index element={<Dashboard/>}/>
+                    <Route path=':id' element={<Games/>}/>
+                    <Route path=':category/:id' element={<Games/>}/>
+                </Route>
+                <Route path='/admin' element={<Admin/>}/>
+              </Routes>
+            </div>
           </BrowserRouter>
           <SideBar />
         </div>

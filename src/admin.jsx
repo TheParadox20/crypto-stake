@@ -72,7 +72,7 @@ import './admin.css'
     return (
         <React.Fragment>
           <div className="admin-container">
-            <h4>Admin pannel</h4>
+            <h1>Admin panel</h1>
           <form onSubmit={this.submitGame} className="admin-form">
 
             <div>

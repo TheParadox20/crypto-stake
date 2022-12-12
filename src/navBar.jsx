@@ -19,6 +19,8 @@ function NavBar() {
   },[])
   return (
     <div className='NavBar'>
+        <h3>Quick Links</h3>
+        <Link className='navbar-button' to='/'> <img src="./test.png" alt="" srcSet="" /> Home</Link>
         <h3>Sports</h3>
         <div className='sports-list'>
           {

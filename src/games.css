@@ -1,6 +1,11 @@
 .game{
     border: 2px solid white;
     margin: 1%;
+    text-align: center;
+    /* background-color: #1A1A1A; */
+}
+.game:hover{
+    transform: scale(1.05);
 }
 img{
     max-width: 8%;
@@ -8,10 +13,8 @@ img{
 }
 
 .matches-title {
-    width: 100%;
     border-bottom: 1px solid #000;
     margin: 10px; 
-    text-align: center;
 }
 
 .matches-buttons {

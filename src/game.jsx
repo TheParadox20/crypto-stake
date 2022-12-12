@@ -22,7 +22,7 @@ function Game(props){
     let [drawStake, setDrawStake] = useState(0.0);
     let [possibleWin, setPossibleWin] = useState(0.0);
     let [currency, setCurrency] = useState('ETH');
-    let [choice, setChoice] = useState(1);
+    let [choice, setChoice] = useState(-1);
     useEffect(()=> {
         async function updateBalance(){
             let balance = await CryptoStakeContract.getStakes(props.gameID);
