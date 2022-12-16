@@ -1,20 +1,12 @@
-.NavBar{
-    background-color: #1f3b47;
-    width: 15vw;
-}
 h3{
     color: #8AFFCF;
     
 }
-.NavBar a{
-    text-decoration: none;
-    color: white;
-}
 .NavBar a:active{
-    color: #4b4242;
+    color: var(--tertiary-3-color);
 }
 .navbar-button:hover{
-    background-color: #4b4242;
+    background-color: var(--tertiary-3-color);
 }
 .navbar-button{
     margin: 2%;

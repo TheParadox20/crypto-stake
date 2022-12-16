@@ -1,16 +1,7 @@
 {
     "baseURL":"https://backend-dev-7aa2.up.railway.app/",
-    "CONTRACT_ADDRESS":"0xd31DCa4EA3d70032b3C11403EFEccA2E64f8A9D5",
+    "CONTRACT_ADDRESS":"0x2E148e7370a6Dd543CA7C218263D83787e5d95Fe",
     "abi":[
-        {
-            "inputs": [],
-            "stateMutability": "payable",
-            "type": "constructor"
-        },
-        {
-            "stateMutability": "payable",
-            "type": "fallback"
-        },
         {
             "inputs": [
                 {
@@ -21,7 +12,7 @@
             ],
             "name": "addBet",
             "outputs": [],
-            "stateMutability": "nonpayable",
+            "stateMutability": "payable",
             "type": "function"
         },
         {
@@ -41,6 +32,37 @@
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "betID",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "choice",
+                    "type": "uint8"
+                }
+            ],
+            "name": "placeBet",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "stateMutability": "payable",
+            "type": "constructor"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "fallback"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "receive"
         },
         {
             "inputs": [],
@@ -198,24 +220,6 @@
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "betID",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint8",
-                    "name": "choice",
-                    "type": "uint8"
-                }
-            ],
-            "name": "placeBet",
-            "outputs": [],
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
             "inputs": [],
             "name": "verifyAdmin",
             "outputs": [
@@ -227,10 +231,6 @@
             ],
             "stateMutability": "view",
             "type": "function"
-        },
-        {
-            "stateMutability": "payable",
-            "type": "receive"
         }
     ]
 }

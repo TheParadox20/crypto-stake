@@ -1,7 +1,7 @@
-table{
+.game table{
     margin: 0 auto;
 }
-td{
+.game td{
     text-align: center;
 }
 #active{

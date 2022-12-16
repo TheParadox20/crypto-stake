@@ -7,6 +7,7 @@ import Admin from './admin'
 import SideBar from './sideBar'
 import Games from './games'
 import Dashboard from './dashboard'
+import Bets from './bets'
 import {CryptoStakeContract} from './contracts'
 import './index.css'
 
@@ -16,13 +17,14 @@ let getContractOwner = async ()=>{
 };
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.Fragment>
-    <Header/>
-        <div className="main-container">
           <BrowserRouter>
+          <Header/>
+          <div className="main-container">
             <NavBar/>
             <div className='center-content'>
               <Routes>
                 <Route path='/' element={<Dashboard/>}/>
+                <Route path='bets' element={<Bets/>}/>
                 <Route path='/games'>
                     <Route index element={<Dashboard/>}/>
                     <Route path=':id' element={<Games/>}/>
@@ -31,8 +33,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path='/admin' element={<Admin/>}/>
               </Routes>
             </div>
+            </div>
           </BrowserRouter>
           <SideBar />
-        </div>
   </React.Fragment>
 )

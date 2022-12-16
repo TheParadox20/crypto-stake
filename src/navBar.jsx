@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import {Link,Routes,Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {baseURL} from './data.json'
-import Games from './games'
 import './navBar.css'
 
 function NavBar() {
@@ -18,15 +17,16 @@ function NavBar() {
     .catch((error) => console.log(error))
   },[])
   return (
-    <div className='NavBar'>
+    <div className='NavBar styled-scrollbars'>
         <h3>Quick Links</h3>
         <Link className='navbar-button' to='/'> <img src="./test.png" alt="" srcSet="" /> Home</Link>
+        <Link className='navbar-button' to='/bets'> <img src="./test.png" alt="" srcSet="" /> Your Bets</Link>
         <h3>Sports</h3>
         <div className='sports-list'>
           {
             sports.map(
               i=>(
-                <Link className='navbar-button' to={'/games/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
+                <Link key={i} className='navbar-button' to={'/games/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
               )
             )
           }
@@ -36,7 +36,7 @@ function NavBar() {
           {
             leagues.map(
               i=>(
-                <Link className='navbar-button' to={'/games/leagues/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
+                <Link key={i} className='navbar-button' to={'/games/leagues/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
               )
             )
           }
@@ -46,7 +46,7 @@ function NavBar() {
           {
             countries.map(
               i=>(
-                <Link className='navbar-button' to={'/games/countries/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
+                <Link key={i} className='navbar-button' to={'/games/countries/'+i}> <img src="./test.png" alt="" srcSet="" /> {i}</Link>
               )
             )
           }

@@ -1,30 +1,19 @@
-.admin-container {
-    display: flex; 
+.control-panel{
+    display: flex;
     flex-direction: row;
+    margin: 0 auto;
 }
-
-.admin-form {
-    display: flex; 
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
+.add-game{
+    border-right: 2px solid whitesmoke;
+    min-width: 40%;
 }
-
-.admin-form div {
-    text-align: center;
+.add-game form input{
+    margin: 2%;
 }
-
-.admin-form div input {
-    margin: 10px; 
-    border: none; 
-    border-radius: 5px;
+.close-game{
+    margin-left: 2%;
+    min-width: 60%;
 }
-
-.submit-button {
-   width: 100px;
-   height: 5vh;
-   background-color: aliceblue;
-   border: none; 
-   border-radius: 10px;
-   cursor: pointer;
+.close-game table tbody tr:hover{
+    transform: scale(1.05);
 }

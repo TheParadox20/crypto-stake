@@ -1,8 +1,8 @@
 import './sideBar.css'
 function SideBar() {
     return (
-      <div className="SideBar">
-        <p>News and Adds Section</p>
+      <div className="SideBar styled-scrollbars">
+        <p>News and Highlights Section</p>
       </div>
     )
   }
