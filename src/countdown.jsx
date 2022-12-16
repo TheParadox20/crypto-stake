@@ -14,7 +14,7 @@ function Countdown(Props){
         setSecond(Math.floor((duration % (1000 * 60)) / 1000));
     },1000)
     return(
-        <span className="countdown">{days}:{hour}:{minute}:{second} <span>({Props.event})</span></span>
+        <span className="countdown">{days}:{hour}:{minute}:{second} <span>{Props.event}</span></span>
     )
 }
 export default Countdown;

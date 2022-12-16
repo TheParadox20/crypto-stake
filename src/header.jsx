@@ -10,7 +10,7 @@ function Header() {
     return (
       <header>
         <Link to='/'><img id='logo' src={logo} alt="" srcSet="" /><h3 className='logo-text'>Crypto Stake</h3></Link>
-        <Countdown target="Dec 18, 2022 18:00:00" event="WORLDCUP FINAL"/>
+        <Countdown target="Dec 18, 2022 18:00:00" event="WORLDCUP FINALS"/>
         <div className='nav-items-links'>
           <Link to=''><img src={ask} alt="" srcset="" /></Link>
           <Link to=''><img src={exchange} alt="" srcset="" /></Link>

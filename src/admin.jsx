@@ -26,12 +26,13 @@ function Admin(){
   const [alphaStake, setAlphaStake] = useState([]);
 
   useEffect(()=>{
-    fetch(baseURL + "/games").then((response) => response.json())
+    
+  },[])
+  fetch(baseURL + "/games").then((response) => response.json())
     .then(async (data) => {
       setGames(data.games);
     })
     .catch((error) => console.log(error))
-  },[])
   let handleSearch = event =>{
     setQuery(searchQuery);
   }
