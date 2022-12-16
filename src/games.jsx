@@ -49,6 +49,7 @@ xmlHttp.open("GET", url, false); // true for asynchronous
           <input type="text" value={searchQuery} className="input-search" onChange={handleSearch} placeholder="Search"/>
         </div>
         
+            <div className='matches'>
             {
               games.map(
                 i=>(
@@ -56,6 +57,7 @@ xmlHttp.open("GET", url, false); // true for asynchronous
                 )
               )
             }
+            </div>
     </div>
   )
 }

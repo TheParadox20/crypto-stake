@@ -1,8 +1,11 @@
+.matches{
+    display: flex;
+}
 .game{
     border: 2px solid white;
     margin: 1%;
     text-align: center;
-    max-width: 25%;
+    min-width: 25%;
     /* background-color: #1A1A1A; */
 }
 .game:hover{
